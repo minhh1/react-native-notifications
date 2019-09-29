@@ -82,28 +82,4 @@ public class FcmInstanceIdListenerService extends FirebaseMessagingService {
 
     }
 
-    private JSONObject getPushData(String dataString) {
-        try {
-            return new JSONObject(dataString);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    private boolean isApplicationInForeground() {
-        ActivityManager activityManager = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
-        List<RunningAppProcessInfo> processInfos = activityManager.getRunningAppProcesses();
-        if (processInfos != null) {
-            for (RunningAppProcessInfo processInfo : processInfos) {
-                if (processInfo.processName.equals(getApplication().getPackageName())) {
-                    if (processInfo.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                        for (String d : processInfo.pkgList) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
 }
