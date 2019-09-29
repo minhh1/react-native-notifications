@@ -62,11 +62,8 @@ public class PushNotification implements IPushNotification {
 
     @Override
     public void onReceived() throws InvalidNotificationException {
-        postNotification(null);
+        //push notification will be silent and dealt with by local notification. This is to prevent duplicate notif. 
         notifyReceivedToJS();
-        if (mAppLifecycleFacade.isAppVisible()) {
-            notifiyReceivedForegroundNotificationToJS();
-        }
     }
 
     @Override
